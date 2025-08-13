@@ -84,7 +84,7 @@ def train_model(df: pd.DataFrame):
     y_bal = df_bal["subsidy_priority"].astype(str)
 
     pipe = Pipeline(steps=[
-        ("ohe", OneHotEncoder(handle_unknown="ignore", sparse=False)),
+        ("ohe", OneHotEncoder(handle_unknown="ignore", sparse_output=False)),
         ("clf", DecisionTreeClassifier(
             random_state=42,
             class_weight="balanced",
@@ -117,3 +117,4 @@ if st.button("Predict Priority"):
     })
     prediction = model.predict(new_data)[0]
     st.success(f"🎯 Predicted Subsidy Priority: **{prediction}**")
+
